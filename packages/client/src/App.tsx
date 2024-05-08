@@ -6,15 +6,16 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useEffect, useState } from "react"
+import { api } from "@/lib/api"
+
 
 const App = () => {
-
   const [totalSpent, setTotalSpent] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function getTotal() {
-      const res = await fetch("/api/expense/total-spent")
+      const res = await api.expense['total-spent'].$get()
       const data = await res.json()
       setLoading(false)
       setTotalSpent(data.total)
