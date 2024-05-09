@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "bun --filter='*' dev"
+    "dev": "bun --filter='*' dev",
+    "build": "cd ./packages/server && bun run build && cd ../../ && cd ./packages/client && bun run build"
   },
   "workspaces": [
     "packages/*"

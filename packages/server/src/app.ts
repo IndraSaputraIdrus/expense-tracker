@@ -10,8 +10,10 @@ app.use(logger())
 const apiRoute = app.basePath("/api")
   .route("/expense", expenseRoute)
 
-app.get('*', serveStatic({ root: '../client/dist' }))
-app.get('*', serveStatic({ path: '../client/dist/index.html' }))
+if (process.env.NODE_ENV === "production") {
+  app.get('*', serveStatic({ root: './public' }))
+  app.get('*', serveStatic({ path: './public/index.html' }))
+}
 
 export default app
 export type ApiRoutes = typeof apiRoute
