@@ -11,14 +11,20 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ExpenseImport } from './routes/expense'
+import { Route as ExpensesImport } from './routes/expenses'
+import { Route as CreateImport } from './routes/create'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const ExpenseRoute = ExpenseImport.update({
-  path: '/expense',
+const ExpensesRoute = ExpensesImport.update({
+  path: '/expenses',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CreateRoute = CreateImport.update({
+  path: '/create',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,8 +50,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/expense': {
-      preLoaderRoute: typeof ExpenseImport
+    '/create': {
+      preLoaderRoute: typeof CreateImport
+      parentRoute: typeof rootRoute
+    }
+    '/expenses': {
+      preLoaderRoute: typeof ExpensesImport
       parentRoute: typeof rootRoute
     }
   }
@@ -56,7 +66,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AboutRoute,
-  ExpenseRoute,
+  CreateRoute,
+  ExpensesRoute,
 ])
 
 /* prettier-ignore-end */

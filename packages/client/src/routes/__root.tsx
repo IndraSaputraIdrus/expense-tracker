@@ -11,11 +11,14 @@ function Root() {
         <Link to="/" className={"[&.active]:font-bold"}>
           Home
         </Link>
+        <Link to="/expenses" className={"[&.active]:font-bold"}>
+          Expenses
+        </Link>
+        <Link to="/create" className={"[&.active]:font-bold"}>
+          Create
+        </Link>
         <Link to="/about" className={"[&.active]:font-bold"}>
           About
-        </Link>
-        <Link to="/expense" className={"[&.active]:font-bold"}>
-          Expense
         </Link>
       </div>
       <hr />
