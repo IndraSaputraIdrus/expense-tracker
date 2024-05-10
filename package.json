@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "bun --filter='*' dev",
+    "dev-client": "cd ./packages/client && bun run dev",
+    "dev-server": "cd ./packages/server && bun run dev",
     "build": "cd ./packages/server && bun run build && cd ../../ && cd ./packages/client && bun run build"
   },
   "workspaces": [
