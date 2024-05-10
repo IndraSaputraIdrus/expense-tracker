@@ -19,7 +19,7 @@ const fakeExpense: Array<Expense> = [
 ]
 
 
-export const expenseRoute = new Hono()
+export const expenseRoutes = new Hono()
   .get("/", (c) => {
     return c.json({ expense: fakeExpense })
   })

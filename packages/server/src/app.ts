@@ -1,14 +1,17 @@
 import { Hono } from "hono";
 import { logger } from "hono/logger";
-import { expenseRoute } from "./routes/expenses";
 import { serveStatic } from "hono/bun";
+
+import { expenseRoutes } from "./routes/expenses";
+import { authRoutes } from "./routes/auth";
 
 const app = new Hono()
 
 app.use(logger())
 
 const apiRoute = app.basePath("/api")
-  .route("/expense", expenseRoute)
+  .route("/expense", expenseRoutes)
+  .route("/", authRoutes)
 
 if (process.env.NODE_ENV === "production") {
   app.get('*', serveStatic({ root: './public' }))
