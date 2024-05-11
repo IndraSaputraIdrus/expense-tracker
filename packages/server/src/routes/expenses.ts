@@ -1,6 +1,7 @@
 import { Hono } from "hono"
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod"
+import { getUser } from "../lib/kinde";
 
 const expenseSchema = z.object({
   id: z.number().int().positive().min(1),
@@ -20,17 +21,17 @@ const fakeExpense: Array<Expense> = [
 
 
 export const expenseRoutes = new Hono()
-  .get("/", (c) => {
+  .get("/", getUser, (c) => {
     return c.json({ expense: fakeExpense })
   })
 
-  .get('/total-spent', (c) => {
+  .get('/total-spent', getUser, (c) => {
     const total = fakeExpense.reduce((acc, curr) => acc + curr.amount, 0)
     return c.json({ total })
   })
 
   // method post dengan zod validator middleware
-  .post("/", zValidator("json", createExpenseSchema), (c) => {
+  .post("/", getUser, zValidator("json", createExpenseSchema), (c) => {
     const expense = c.req.valid("json")
     fakeExpense.push({ ...expense, id: fakeExpense.length + 1 })
     c.status(201)
@@ -38,7 +39,7 @@ export const expenseRoutes = new Hono()
   })
 
   // pastikan parameter nya harus angka
-  .get("/:id{[0-9]+}", (c) => {
+  .get("/:id{[0-9]+}", getUser, (c) => {
     const id = Number.parseInt(c.req.param("id"))
     const expense = fakeExpense.find(expense => expense.id === id)
 
@@ -50,7 +51,7 @@ export const expenseRoutes = new Hono()
   })
 
   // delete method
-  .delete("/:id{[0-9]+}", (c) => {
+  .delete("/:id{[0-9]+}", getUser, (c) => {
     const id = Number.parseInt(c.req.param("id"))
     const index = fakeExpense.findIndex(expense => expense.id === id)
 

@@ -1,7 +1,7 @@
 import CreateExpenseForm from '@/components/CreateExpenseForm'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/create')({
+export const Route = createFileRoute('/_authenticated/create')({
   component: CreateExpensePage
 })
 

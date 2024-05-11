@@ -48,10 +48,8 @@ type Env = {
 
 export const getUser = createMiddleware<Env>(async (c, next) => {
   try {
-
     const manager = sessionManager(c)
     const isAuthenticated = await kindeClient.isAuthenticated(manager)
-
     if (!isAuthenticated) return c.json({ error: "Unauthorized" }, 401)
     const user = await kindeClient.getUserProfile(manager)
     c.set("user", user)
