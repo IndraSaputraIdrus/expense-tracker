@@ -10,7 +10,7 @@ const app = new Hono()
 app.use(logger())
 
 const apiRoute = app.basePath("/api")
-  .route("/expense", expenseRoutes)
+  .route("/expenses", expenseRoutes)
   .route("/", authRoutes)
 
 if (process.env.NODE_ENV === "production") {

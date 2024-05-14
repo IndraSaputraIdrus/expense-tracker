@@ -6,10 +6,15 @@
   "scripts": {
     "start": "bun ./src/index.ts",
     "dev": "bun --watch ./src/index.ts",
+    "drizzle:gen": "bun drizzle-kit generate",
+    "drizzle:studio": "bun drizzle-kit studio",
+    "drizzle:push": "bun drizzle-kit push",
     "build": "bun build ./src/index.ts --outdir ./build"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "better-sqlite3": "^10.0.0",
+    "drizzle-kit": "^0.21.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -17,6 +22,7 @@
   "dependencies": {
     "@hono/zod-validator": "^0.2.1",
     "@kinde-oss/kinde-typescript-sdk": "^2.9.0",
+    "drizzle-orm": "^0.30.10",
     "hono": "^4.3.0",
     "zod": "^3.23.6"
   }

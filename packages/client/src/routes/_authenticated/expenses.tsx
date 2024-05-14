@@ -19,7 +19,7 @@ export const Route = createFileRoute('/_authenticated/expenses')({
 })
 
 async function getAllExpenses() {
-  const res = await api.expense.$get()
+  const res = await api.expenses.$get()
   if (!res.ok) {
     throw new Error("Server error")
   }
@@ -63,7 +63,7 @@ function ExpensesPage() {
                   </TableCell>
                 </TableRow>
               )) :
-              data?.expense.map(expense => (
+              data?.expenses.map(expense => (
                 <TableRow key={expense.id}>
                   <TableCell className="font-medium">{expense.id}</TableCell>
                   <TableCell>{expense.title}</TableCell>

@@ -14,7 +14,7 @@ import { api } from "@/lib/api"
 import { useQuery } from "@tanstack/react-query"
 
 async function getTotalSpent() {
-  const res = await api.expense['total-spent'].$get()
+  const res = await api.expenses['total-spent'].$get()
   if (!res.ok) {
     throw new Error("Server error")
   }

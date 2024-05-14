@@ -15,7 +15,7 @@ export default function CreateExpenseForm() {
       amount: 0
     },
     onSubmit: async ({ value }) => {
-      const res = await api.expense.$post({
+      const res = await api.expenses.$post({
         json: value
       })
       if (!res.ok) {
